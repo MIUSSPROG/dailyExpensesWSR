@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.dailyexpenseswsr.data.Item
 import com.example.dailyexpenseswsr.databinding.FragmentAddItemToBuyBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -48,8 +50,7 @@ class AddItemFragment(val dateUnix: Long, val date: String): BottomSheetDialogFr
                 viewModel.insertItem(item)
             }
         }
-
-        viewModel.inserItemLiveData.observe(viewLifecycleOwner){
+        viewModel.insertItemLiveData.observe(viewLifecycleOwner){
             if (it != 0L){
                 Toast.makeText(requireContext(), "Данные сохранены!", Toast.LENGTH_SHORT).show()
             }else{

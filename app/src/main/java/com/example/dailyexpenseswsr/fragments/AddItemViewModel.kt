@@ -1,10 +1,7 @@
 package com.example.dailyexpenseswsr.fragments
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.dailyexpenseswsr.data.GraphicsData
 import com.example.dailyexpenseswsr.data.Item
 import com.example.dailyexpenseswsr.data.ItemDao
@@ -14,7 +11,8 @@ import kotlinx.coroutines.launch
 
 class AddItemViewModel @ViewModelInject constructor(private val dao: ItemDao): ViewModel() {
 
-    val inserItemLiveData = MutableLiveData<Long>()
+    private val _inserItemLiveData = MutableLiveData<Long>()
+    var insertItemLiveData: LiveData<Long> = _inserItemLiveData
     val itemsLiveData = MutableLiveData<List<Item>>()
     val items2LiveData = dao.getItems().asLiveData()
     val graphicsLiveData = MutableLiveData<List<GraphicsData>>()
@@ -22,7 +20,7 @@ class AddItemViewModel @ViewModelInject constructor(private val dao: ItemDao): V
     fun insertItem(item: Item){
         viewModelScope.launch {
             val response = dao.insert(item)
-            inserItemLiveData.postValue(response)
+            _inserItemLiveData.postValue(response)
         }
     }
 
