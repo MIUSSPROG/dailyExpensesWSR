@@ -71,4 +71,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
+
+    //     Customizable CalendarView - календарь с множеством кастомизаций
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
 }

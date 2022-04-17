@@ -46,7 +46,7 @@ class GraphicsActivity : AppCompatActivity() {
     private fun showBarChart(data: List<GraphicsData>){
         val entries = mutableListOf<BarEntry>()
         data.forEach { item ->
-            entries.add(BarEntry(item.date.toFloat()/10000000, item.sumPrice))
+            entries.add(BarEntry((item.date/1000000).toFloat(), item.sumPrice))
         }
         val barDataset = BarDataSet(entries, "Items")
         val barData = BarData(barDataset)
@@ -55,7 +55,5 @@ class GraphicsActivity : AppCompatActivity() {
             chart.animateY(1000)
             chart.invalidate()
         }
-
-
     }
 }

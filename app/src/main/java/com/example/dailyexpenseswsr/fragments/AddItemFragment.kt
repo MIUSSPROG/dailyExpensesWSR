@@ -37,6 +37,9 @@ class AddItemFragment(val dateUnix: Long, val date: String): BottomSheetDialogFr
                 "Канцелярия",
                 "Кинотеатры"
             )
+
+            tvDateToBuy.text = date
+
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, items)
             etCategories.setAdapter(adapter)
             etCategories.setOnItemClickListener { _, _, position, _ ->
